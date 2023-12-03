@@ -12,7 +12,7 @@ def check_surround(m, i, j, checked):
             if y < 0 or y >= l2:
                 continue
             if m[x][y] == '*' and not (x,y) in checked:
-                d[(x,y)] = d.get((x,y), []) + [(i,j)]
+                d[(x,y)] = d.get((x,y), []) + [int(m[i][j])]
                 checked.append((x,y))
 
 def create_matrix(input):
@@ -54,12 +54,12 @@ def main(argv, argc):
                 check_surround(m, i, j, checked)
             else:
                 checked.clear()
-    for coords in d.values():
-        if (len(coords) != 2):
+    for numbers in d.values():
+        if (len(numbers) != 2):
             continue
-        c1 = coords[0]
-        c2 = coords[1]
-        gear = int(m[c1[0]][c1[1]]) * int(m[c2[0]][c2[1]])
+        v1 = numbers[0]
+        v2 = numbers[1]
+        gear = v1 * v2
         total += gear
     print(total)
 
